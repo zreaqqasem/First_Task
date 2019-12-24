@@ -2,5 +2,28 @@ h1{
     margin: auto;
     text-align: left;
     text color: red;
-    
+    display: block;
+    text-align: center;
+    font-size: 50px;
+
+
+
+
+}
+.arae {
+
+
+
+}
+button{
+
+    font-size: 40px ;
+    font-weight: 600 ;
+    color: whitesmoke;
+    background-color:dodgerblue ;
+    padding: 15px 15px ;
+    display: block;
+    text-align: center;
+    margin:auto ;
+    border-radius: 300px;
 }

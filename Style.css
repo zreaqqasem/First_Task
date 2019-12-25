@@ -8,13 +8,42 @@ h1{
 
 
 
-
 }
 .arae {
 
-
+    box-shadow: 2px 2px 2px black ; 
+    width: 100% ;
+    padding-top: 4% ;
+    padding-bottom: 4% ;
+    margin: auto ;
 
 }
+
+div.slopeicon  {
+    display: block;
+    background-color: green;
+    margin: auto;
+    width: 85%;
+    height:900px;
+    padding-left: 30px;
+    padding-right: 30px;
+    position:relative;
+    
+  }
+
+img {
+    display: block;
+    margin: auto;
+    width: 100px ;
+    height: 100px ;
+     box-shadow: -2px -2px -2px -2px ;
+    float: center;
+    padding: 400px
+
+}
+
+
+    
 button{
 
     font-size: 40px ;
@@ -27,3 +56,7 @@ button{
     margin:auto ;
     border-radius: 300px;
 }
+/* #ball{
+
+    float: right;
+} */

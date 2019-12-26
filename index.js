@@ -61,6 +61,6 @@ function move(){
     alert('welcome!');
 
   }
-  alert('move on ! dont be mad if you still not score any goal');
+  // alert('move on ! dont be mad if you still not score any goal');
 
 }

@@ -1,19 +1,20 @@
-h1{
+h1,h2,h3,h4{
     margin: auto;
     text-align: left;
-    text color: red;
+    color:black;
     display: block;
     text-align: center;
     font-size: 50px;
-
-
-
+    text-shadow: 1px 1px 1px ;
+    text
 }
 
+.area {
 
+    background-color: beige;
+}
 div.slopeicon  {
-    display: block;
-    background-color: green;
+    display: none;
     margin: auto;
     width: 85%;
     height:800px;
@@ -21,14 +22,21 @@ div.slopeicon  {
     padding-right: 30px;
     position:relative;
     margin-top: 0px;
+    background-image: url("finals.jpg");
     
   }
 
    img {
     display: block;
-    padding-left: 620px;
+    padding-left: 686px; /* i chosed this numberes to start the ball at the center of the stadium*/
     padding-top: 380px;
-    width: 6%;
+    width:3%;
+
+}
+div.image{
+    width: 90%;
+    height: 0px;
+  
 
 }
 
@@ -37,17 +45,15 @@ div.slopeicon  {
 button{
 
     font-size: 40px ;
-    font-weight: 600 ;
-    color: whitesmoke;
-    background-color:dodgerblue ;
+    font-weight: 600px ;
+    text-shadow: 1px 1px 1px;
+    color:black;
+    background-color:greenyellow ;
     padding: 15px 15px ;
     display: block;
     text-align: center;
     margin:auto ;
-    border-radius: 300px;
+    border-radius: 50px;
 }
 
-/* #ball{
 
-    float: right;
-} */

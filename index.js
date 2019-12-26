@@ -1,14 +1,15 @@
 
-/*this function work as follow : i generate every click a four random numbers and one for the cases , to walk based on 4 cases
-in every case i will make one fixed and the another change based on the random number.
-the random numbers ranges based on the image size , at the top and buttom the ball will walk always in the line of the stadium.
-at the left and right will exceed the line a little bit to make us can score a random goals ! */
 function welcome(){
 let firstName = prompt('Enter your first name :');
 let lastName = prompt('Enter your last name :');
 alert('you are welcome ' + firstName + ' ' + lastName + ' Now You Can Start By clicking OK ! Good Luck !');
 document.getElementsByClassName('slopeicon')[0].style.display = 'block';
 }
+
+/*this function work as follow : i generate every click a four random numbers and one for the cases , to walk based on 4 cases
+in every case i will make one fixed and the another change based on the random number.
+the random numbers ranges based on the image size , at the top and buttom the ball will walk always in the line of the stadium.
+at the left and right will exceed the line a little bit to make us can score a random goals ! */
 function move(){
 
   

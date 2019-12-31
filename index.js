@@ -11,6 +11,7 @@ in every case i will make one fixed and the another change based on the random n
 the random numbers ranges based on the image size , at the top and buttom the ball will walk always in the line of the stadium.
 at the left and right will exceed the line a little bit to make us can score a random goals ! */
 function move(){
+  //
 
   setTimeout(function () {
 

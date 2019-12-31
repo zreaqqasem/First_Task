@@ -34,8 +34,8 @@ function welcome(){
     }
   }
   function initBall(oBall) {
-    oBall._x = Math.random() * 20;
-    oBall._y = Math.random() * 20;
+    oBall._x = Math.random() * 50;
+    oBall._y = Math.random() * 50;
     oBall._vX = B_VMIN + rnd(B_VMAX) * (Math.random() > 0.5 ? 1 : -1);
     oBall._vY = B_VMIN + rnd(B_VMAX);
   }
@@ -143,12 +143,9 @@ function welcome(){
     startAnimation();
     document.onmousedown = mouseDown;
   }
-  getWindowCoords = (navigator.userAgent.match(/opera/i) || navigator.userAgent.match(/safari/i)) ? function() {
+  getWindowCoords = function() {
     canvasX = 1400;
     canvasY = 760;
-  } : function() {
-    canvasX = document.documentElement.clientWidth||document.body.clientWidth||document.body.scrollWidth;
-    canvasY = document.documentElement.clientHeight||document.body.clientHeight||document.body.scrollHeight;
   }
   window.onresize = getWindowCoords;
   window.onload = init;

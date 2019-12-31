@@ -1,76 +1,154 @@
-jn 
 function welcome(){
-let firstName = prompt('Enter your first name :');
-let lastName = prompt('Enter your last name :');
-alert('you are welcome ' + firstName + ' ' + lastName + ' Now You Can Start By clicking OK ! Good Luck !');
-document.getElementsByClassName('slopeicon')[0].style.display = 'block';
-}
-
-/*this function work as follow : i generate every click a four random numbers and one for the cases , to walk based on 4 cases
-in every case i will make one fixed and the another change based on the random number.
-the random numbers ranges based on the image size , at the top and buttom the ball will walk always in the line of the stadium.
-at the left and right will exceed the line a little bit to make us can score a random goals ! */
-function move(){
-  //
-
-  setTimeout(function () {
-
-
-    let cases = Math.random() * 4;
-    cases = Math.floor(cases);
-  
-    let case0 = Math.random() * 1331; // 1331 maximum left can go 
-    case0 = Math.floor(case0);
-    case0 = case0 + 'px';
-  
-  
-    let case1 = Math.random() * 701; //maximum top or the buttom of stadium
-    case1 = Math.floor(case1);
-    case1 = case1 +'px';
-  
-  
-    let case2 = Math.random() * 1331;
-    case2 = Math.floor(case2);
-    case2 = case2 + 'px';
-  
-  
-    let case3 = Math.random() * 701;
-    case3 = Math.floor(case3);
-    case3 = case3 + 'px';
-    switch(cases)
-    {
-     case 0:
-        document.getElementsByTagName('img')[0].style.paddingTop = '22px';
-        document.getElementsByTagName('img')[0].style.paddingLeft = case0;
-        break;
-       
-     
-    case 1:
-        document.getElementsByTagName('img')[0].style.paddingTop = case1; 
-        document.getElementsByTagName('img')[0].style.paddingLeft = '0px';
-        break;
-  
-    case 2:
-        document.getElementsByTagName('img')[0].style.paddingTop = '741px'; 
-        document.getElementsByTagName('img')[0].style.paddingLeft = case2;
-        break;
-  
-    case 3:
-        document.getElementsByTagName('img')[0].style.paddingTop = case3; 
-        document.getElementsByTagName('img')[0].style.paddingLeft = '1370px';
-        break;    
-  
-    default:
-  
-  
+  let firstName = prompt('Enter your first name :');
+  let lastName = prompt('Enter your last name :');
+  alert('you are welcome ' + firstName + ' ' + lastName + ' Now You Can Start By clicking OK ! Good Luck !');
+  document.getElementsByClassName('slopeicon')[0].style.display = 'block';
+  }
+  var balls = [];
+  var canvasX = 0;
+  var canvasY = 0;
+  var timer = null;
+  var m_lastX = 0;
+  var m_lastY = 0;
+  var M_SPACE = 24;
+  var B_VMIN = 5;
+  var B_VMAX = 5;
+  var B_WIDTH = 13;
+  var B_HEIGHT = 13;
+  function rnd(n) {
+    return Math.random()*n;
+  }
+  function rndI(n) {
+    return parseInt(rnd(n));
+  }
+  function createBall(oParent) {
+    oParent.appendChild(balls[0].cloneNode(false));
+    initBall(balls[balls.length-1]);
+  }
+  function createBallAtMouse(e) {
+    e = e?e:event;
+    createBall(document.getElementById('ball-container'));
+    with (balls[balls.length-1]) {
+      _x = e.clientX;
+      _y = e.clientY;
     }
-
-    document.getElementsByTagName('img')[0].onclick = null;
-    move();
-
-
-  }, 1000);
-
+  }
+  function initBall(oBall) {
+    oBall._x = Math.random() * 20;
+    oBall._y = Math.random() * 20;
+    oBall._vX = B_VMIN + rnd(B_VMAX) * (Math.random() > 0.5 ? 1 : -1);
+    oBall._vY = B_VMIN + rnd(B_VMAX);
+  }
+  function moveBall(oBall) {
+    oBall._x += oBall._vX;
+    oBall._y += oBall._vY;
+    oBall.style.left = oBall._x + 'px';
+    oBall.style.right = oBall._y + 'px';
+    oBall.style.top = oBall._y + 'px';
+    oBall.style.button = oBall._y + 'px';
   
-}
-
+  
+    
+    if ((oBall._vX > 0 && oBall._x + oBall._vX + B_WIDTH > canvasX) || (oBall._vX < 0 && oBall._x + oBall._vX < 0)) {
+      // horizontal bounce
+      oBall._vX *= -1;
+    }
+    if ((oBall._vY > 0 && oBall._y + oBall._vY + B_HEIGHT > canvasY) || (oBall._vY < 0 && oBall._y + oBall._vY < 0)) {
+      // vertical bounce
+      oBall._vY *= -1;
+    }
+  }
+  function animateStuff() {
+    for (var i=balls.length; i--;) {
+      moveBall(balls[i]);
+    }
+    collisionCheck();
+  }
+  function isColliding(ball1, ball2) {
+    if (Math.abs(ball1._x - ball2._x) < B_WIDTH && Math.abs(ball1._y - ball2._y) < B_HEIGHT) {
+      /*
+       * we have a collision!
+       * edge case to consider: balls may get stuck colliding back and forth
+       * between each other for a few frames if they don't fully "separate"
+       * from each other in one frame of motion.
+      */
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function collisionCheck() {
+    // simple loop through all the ball objects, comparing coordinates
+    var i, j;
+    for (i = balls.length; i--;) {
+      for (j = balls.length; j--;) {
+        if (j !== i) { // don't compare each ball to itself
+          if (isColliding(balls[j], balls[i])) {
+            // bounce the ball based on its dominant direction (horizontal or vertical movement)
+            if (Math.abs(balls[j]._vX) > Math.abs(balls[j]._vY)) {
+              // moving more horizontally
+              balls[j]._vX *= -1;
+            } else if (Math.abs(balls[j]._vY) > Math.abs(balls[j]._vX)) {
+              // moving more vertically
+              balls[j]._vY *= -1;
+            } else {
+              // edge case: if identical speed on x/y, bounce both
+              balls[j]._vX *= -1;
+              balls[j]._vY *= -1;
+            }
+          }
+        }
+      }
+    }
+  }
+  function startAnimation() {
+    if (!timer) {
+      timer = setInterval(animateStuff,20);
+    }
+  }
+  function stopAnimation() {
+    if (!timer) {
+      return false;
+    }
+    clearInterval(timer);
+    timer = null;
+  }
+  function mouseDown(e) {
+    e = e?e:event;
+    m_lastX = e.clientX;
+    m_lastY = e.clientY;
+    
+    document.onmousemove = mouseMove;
+    document.onmouseup = mouseUp;
+  }
+  function mouseMove(e) {
+    e = e?e:event;
+    if (Math.abs(e.clientX - m_lastX) > M_SPACE || Math.abs(e.clientY - m_lastY) > M_SPACE) {
+      m_lastX = e.clientX;
+      m_lastY = e.clientY;
+      createBallAtMouse(e);
+    }
+    return false;
+  }
+  function mouseUp() {
+    document.onmousemove = null;
+    document.onmouseup = null;
+  }
+  function init() {
+    balls = document.getElementById('ball-container').getElementsByTagName('img');
+    for (var i=balls.length; i--;) {
+      initBall(balls[i]);
+    }
+    getWindowCoords();
+    startAnimation();
+    document.onmousedown = mouseDown;
+  }
+  getWindowCoords = (navigator.userAgent.match(/opera/i) || navigator.userAgent.match(/safari/i)) ? function() {
+    canvasX = 1400;
+    canvasY = 760;
+  } : function() {
+    canvasX = document.documentElement.clientWidth||document.body.clientWidth||document.body.scrollWidth;
+    canvasY = document.documentElement.clientHeight||document.body.clientHeight||document.body.scrollHeight;
+  }
+  window.onresize = getWindowCoords;
+  window.onload = init;

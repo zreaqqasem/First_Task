@@ -125,5 +125,5 @@ class ball {
 // let ball1 = new ball ();
 let  ball1 = new ball ();
 // let ball2 = new ball();
-// ball1.move();
-ball2.move();
+ball1.move();
+// ball2.move();

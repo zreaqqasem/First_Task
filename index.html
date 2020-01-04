@@ -1,127 +1,37 @@
+<!DOCTYPE html>
+<html>
 
 
 <head>
-    <link rel="style sheet" href="Style.css">
-    <style type="text/css">
-div.image {
-    width: 85%;
-}
-.balls{
-    width: 85%;
-}
-.balls img {
-    position: absolute;
-    display: block;
-    width:2%;
-}
-h1,h2,h3,h4{
-    margin: auto;
-    text-align: left;
-    color:black;
-    display: block;
-    text-align: center;
-    font-size: 50px;
-    text-shadow: 1px 1px 1px ;
-    text
-}
-
-.area {
-
-    background-color: beige;
-}
-div.slopeicon  {
-    display: none;
-    margin: auto;
-    width: 85%;
-    height:800px;
-    padding-left: 30px;
-    padding-right: 30px;
-    position:relative;
-    margin-top: 0px;
-    background-image: url("finals.jpg");
-    
-  }
-
-button{
-
-    font-size: 40px ;
-    font-weight: 600px ;
-    text-shadow: 1px 1px 1px;
-    color:black;
-    background-color:greenyellow ;
-    padding: 15px 15px ;
-    display: block;
-    text-align: center;
-    margin:auto ;
-    border-radius: 50px;
-}
-</style>
-<script type="text/javascript" src="index.js">
-// <![CDATA[
-
-// ]]>
-</script>
+    <link rel="StyleSheet" href="Style.css">
 </head>
-<body class="area">
-        <h1>Welcome to my first Task ! </h1>
-                <br>
-        <hr>
-        <h3>at first you need to register using your first and last name to display the area of the game ! </h3>
-        <hr>
-        <h4>to do that click on start buttom below , lets do it !</h4>
-        <hr>
-        <button onclick="welcome()">start</button>
-        <br>
-        <hr>
-</p>
-<button onclick="startAnimation()">Start</button>
-<button onclick="stopAnimation()">Stop</button>
-<br>
-<div class="slopeicon">
-       
-        <div class="image">
-                <div id="ball-container" class="balls">
-                        <img src="circle-cropped.png" alt="" />
-                     </div>
-                         </div>
-                              </div>
 
-<!-- Code injected by live-server -->
-<script type="text/javascript">
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script></body>
+<body class="area">
+
+    <h1>Welcome to my first Task ! </h1>
+    <hr>
+    <h2>in this task we will play a fotball game , it work like this : at start the ball will be at the center of the stadium , when we kick the ball it will move on the stadium edeges , we will try to score a goal ! lets do it !</h2>
+    <br>
+    <hr>
+    <h3>at first you need to register using your first and last name to display the area of the game ! </h3>
+    <hr>
+    <h4>to do that click on start buttom below , lets do it !</h4>
+    <hr>
+    <!-- <button onclick="welcome()">start</button> -->
+    <br>
+    <br>
+    <!-- <button class="btt" onclick="move();">Start Moving !</button> -->
+    <hr>
+
+    <div>
+        <canvas id="firstTask" height="800px" width="1450px"  class="firstTask" style="background-image: url(finals.jpg);" ></canvas>
+    </div>
+    <script src="index.js"></script>
+
+    <hr>
+
+
+
+</body>
+
 </html>

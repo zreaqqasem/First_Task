@@ -1,151 +1,129 @@
-function welcome(){
-  let firstName = prompt('Enter your first name :');
-  let lastName = prompt('Enter your last name :');
-  alert('you are welcome ' + firstName + ' ' + lastName + ' Now You Can Start By clicking OK ! Good Luck !');
-  document.getElementsByClassName('slopeicon')[0].style.display = 'block';
-  }
-  var balls = [];
-  var canvasX = 0;
-  var canvasY = 0;
-  var timer = null;
-  var m_lastX = 0;
-  var m_lastY = 0;
-  var M_SPACE = 24;
-  var B_VMIN = 5;
-  var B_VMAX = 5;
-  var B_WIDTH = 13;
-  var B_HEIGHT = 13;
-  function rnd(n) {
-    return Math.random()*n;
-  }
-  function rndI(n) {
-    return parseInt(rnd(n));
-  }
-  function createBall(oParent) {
-    oParent.appendChild(balls[0].cloneNode(false));
-    initBall(balls[balls.length-1]);
-  }
-  function createBallAtMouse(e) {
-    e = e?e:event;
-    createBall(document.getElementById('ball-container'));
-    with (balls[balls.length-1]) {
-      _x = e.clientX;
-      _y = e.clientY;
-    }
-  }
-  function initBall(oBall) {
-    oBall._x = Math.random() * 50;
-    oBall._y = Math.random() * 50;
-    oBall._vX = B_VMIN + rnd(B_VMAX) * (Math.random() > 0.5 ? 1 : -1);
-    oBall._vY = B_VMIN + rnd(B_VMAX);
-  }
-  function moveBall(oBall) {
-    oBall._x += oBall._vX;
-    oBall._y += oBall._vY;
-    oBall.style.left = oBall._x + 'px';
-    oBall.style.right = oBall._y + 'px';
-    oBall.style.top = oBall._y + 'px';
-    oBall.style.button = oBall._y + 'px';
+
+class canvas {
+
+constructor ()
+
+{
+  this.my_canvas = document.getElementById("firstTask");
+  this.context = this.my_canvas.getContext("2d");
+  this.ballImg = new Image();
+  this.ballImg.src = "circle-cropped.png";
+  this.background = new Image();
+  this.background.src = "finals.jpg";
+
+
+}
+
+}
+
+class ball {
   
   
+  constructor ()
+  {
+    this.ball_x = this.ball_x();
+    this.ball_y = this.ball_y();
+    this.x_velocity = this.x_velocity();
+    this.y_velocity = this.y_velocity();
+    this.Frame_per_second = 30;
+    this.ball_size = 40;
     
-    if ((oBall._vX > 0 && oBall._x + oBall._vX + B_WIDTH > canvasX) || (oBall._vX < 0 && oBall._x + oBall._vX < 0)) {
-      // horizontal bounce
-      oBall._vX *= -1;
-    }
-    if ((oBall._vY > 0 && oBall._y + oBall._vY + B_HEIGHT > canvasY) || (oBall._vY < 0 && oBall._y + oBall._vY < 0)) {
-      // vertical bounce
-      oBall._vY *= -1;
-    }
   }
-  function animateStuff() {
-    for (var i=balls.length; i--;) {
-      moveBall(balls[i]);
-    }
-    collisionCheck();
-  }
-  function isColliding(ball1, ball2) {
-    if (Math.abs(ball1._x - ball2._x) < B_WIDTH && Math.abs(ball1._y - ball2._y) < B_HEIGHT) {
-      /*
-       * we have a collision!
-       * edge case to consider: balls may get stuck colliding back and forth
-       * between each other for a few frames if they don't fully "separate"
-       * from each other in one frame of motion.
-      */
-      return true;
-    } else {
-      return false;
-    }
-  }
-  function collisionCheck() {
-    // simple loop through all the ball objects, comparing coordinates
-    var i, j;
-    for (i = balls.length; i--;) {
-      for (j = balls.length; j--;) {
-        if (j !== i) { // don't compare each ball to itself
-          if (isColliding(balls[j], balls[i])) {
-            // bounce the ball based on its dominant direction (horizontal or vertical movement)
-            if (Math.abs(balls[j]._vX) > Math.abs(balls[j]._vY)) {
-              // moving more horizontally
-              balls[j]._vX *= -1;
-            } else if (Math.abs(balls[j]._vY) > Math.abs(balls[j]._vX)) {
-              // moving more vertically
-              balls[j]._vY *= -1;
-            } else {
-              // edge case: if identical speed on x/y, bounce both
-              balls[j]._vX *= -1;
-              balls[j]._vY *= -1;
-            }
-          }
-        }
-      }
-    }
-  }
-  function startAnimation() {
-    if (!timer) {
-      timer = setInterval(animateStuff,20);
-    }
-  }
-  function stopAnimation() {
-    if (!timer) {
-      return false;
-    }
-    clearInterval(timer);
-    timer = null;
-  }
-  function mouseDown(e) {
-    e = e?e:event;
-    m_lastX = e.clientX;
-    m_lastY = e.clientY;
+
+     ball_x() {
+
+     this.ball_x = Math.random() * 1450; 
+     this.ball_x = Math.floor(this.ball_x);
+     return this.ball_x;   // generate a random number between 1 and 1450 which it the width of the canvas.
+
+
     
-    document.onmousemove = mouseMove;
-    document.onmouseup = mouseUp;
   }
-  function mouseMove(e) {
-    e = e?e:event;
-    if (Math.abs(e.clientX - m_lastX) > M_SPACE || Math.abs(e.clientY - m_lastY) > M_SPACE) {
-      m_lastX = e.clientX;
-      m_lastY = e.clientY;
-      createBallAtMouse(e);
-    }
-    return false;
+
+   ball_y ()
+  {
+   
+    this.ball_y = Math.random() * 800; //generate a random number between 1 and 800 which it the height of the canvas.
+    this.ball_y = Math.floor(this.ball_y);
+    return this.ball_y;
+
+
   }
-  function mouseUp() {
-    document.onmousemove = null;
-    document.onmouseup = null;
+  x_velocity() // get a random x axsis velocity for any ball object
+  {
+
+    this.x_velocity = (Math.random() * 10 + 10 );
+    this.x_velocity = Math.floor(this.x_velocity);
+    return this.x_velocity;
   }
-  function init() {
-    balls = document.getElementById('ball-container').getElementsByTagName('img');
-    for (var i=balls.length; i--;) {
-      initBall(balls[i]);
-    }
-    getWindowCoords();
-    startAnimation();
-    document.onmousedown = mouseDown;
+
+   y_velocity () // get a random y axis velocity for any ball object.
+  {
+    this.y_velocity = (Math.random() * 10 + 10 );
+    this.y_velocity = Math.floor(this.y_velocity);
+    return this.y_velocity;
+
+
   }
-  getWindowCoords = function() {
-    canvasX = 1400;
-    canvasY = 760;
+
+  direction () // generate a random direction start.
+  {
+
+    if (Math.floor(Math.random() * 2) == 0) {
+      this.x_velocity = -this.x_velocity ;
   }
-  window.onresize = getWindowCoords;
-  window.onload = init;
+  if (Math.floor(Math.random() * 2) == 0) {
+      this.y_velocity = -this.y_velocity;
+  }
+
+  }
+
+
+ 
+  move ()
+  {
+    
+    
+    const canvas1 = new canvas();
+    this.direction();
+
+    setInterval(() => {
+
+
+      this.ball_x +=  this.x_velocity;
+      this.ball_y += this.y_velocity;
+     
+     if (this.ball_x - this.ball_size / 2 < 0 && this.x_velocity < 0) {   // here is the colision of the 4 wall cases.
+      this.x_velocity = -this.x_velocity;
+     }
+     if (this.ball_x + this.ball_size / 2 > 1450 && this.x_velocity > 0) {
+      this.x_velocity = -this.x_velocity;
+     }
+     if (this.ball_y - this.ball_size / 2 < 0 && this.y_velocity < 0) {
+      this.y_velocity = -this.y_velocity;
+     }
+     if (this.ball_y + this.ball_size / 2 > 800 && this.y_velocity > 0) {
+      this.y_velocity = -this.y_velocity;
+     }
+     canvas1.context.drawImage(canvas1.background,0,0);
+     this.draw_Ball(canvas1); // draw the ball and make it moving .
+
+
+      
+    }, 1000/this.Frame_per_second);
+
+  }
+
+
+
+  draw_Ball(canvas1) {
+    canvas1.context.drawImage(canvas1.ballImg, this.ball_x - this.ball_size / 2, this.ball_y - this.ball_size / 2, this.ball_size, this.ball_size);
+  }
+}
+
+ 
+// let ball1 = new ball ();
+let  ball1 = new ball ();
+let ball2 = new ball();
+ball1.move();
+ball2.move();

@@ -13,35 +13,15 @@ h1,h2,h3,h4{
 
     background-color: beige;
 }
-div.slopeicon  {
-    display: none;
-    margin: auto;
-    width: 85%;
-    height:800px;
-    padding-left: 30px;
-    padding-right: 30px;
-    position:relative;
-    margin-top: 0px;
-    background-image: url("finals.jpg");
-    
-  }
 
-   img {
+
+  .firstTask { 
+    margin-left: 100px;
     display: block;
-    padding-left: 686px; /* i chosed this numberes to start the ball at the center of the stadium*/
-    padding-top: 380px;
-    width:3%;
-
+  }
+.btt{
+    display: block;
 }
-div.image{
-    width: 90%;
-    height: 0px;
-  
-
-}
-
-
-    
 button{
 
     font-size: 40px ;
@@ -55,5 +35,3 @@ button{
     margin:auto ;
     border-radius: 50px;
 }
-
-

@@ -10,8 +10,6 @@ constructor ()
   this.ballImg.src = "circle-cropped.png";
   this.background = new Image();
   this.background.src = "finals.jpg";
-
-
 }
 
 }
@@ -79,21 +77,9 @@ class ball {
   }
 
 
- 
-  move ()
+  checkWalls()
   {
-    
-    
-    const canvas1 = new canvas();
-    this.direction();
-
-    setInterval(() => {
-
-
-      this.ball_x +=  this.x_velocity;
-      this.ball_y += this.y_velocity;
-     
-     if (this.ball_x - this.ball_size / 2 < 0 && this.x_velocity < 0) {   // here is the colision of the 4 wall cases.
+    if (this.ball_x - this.ball_size / 2 < 0 && this.x_velocity < 0) {   // here is the colision of the 4 wall cases.
       this.x_velocity = -this.x_velocity;
      }
      if (this.ball_x + this.ball_size / 2 > 1450 && this.x_velocity > 0) {
@@ -105,25 +91,57 @@ class ball {
      if (this.ball_y + this.ball_size / 2 > 800 && this.y_velocity > 0) {
       this.y_velocity = -this.y_velocity;
      }
-     canvas1.context.drawImage(canvas1.background,0,0);
-     this.draw_Ball(canvas1); // draw the ball and make it moving .
-
-
-      
-    }, 1000/this.Frame_per_second);
 
   }
 
 
 
-  draw_Ball(canvas1) {
-    canvas1.context.drawImage(canvas1.ballImg, this.ball_x - this.ball_size / 2, this.ball_y - this.ball_size / 2, this.ball_size, this.ball_size);
-  }
-}
 
  
-// let ball1 = new ball ();
-let  ball1 = new ball ();
-// let ball2 = new ball();
-ball1.move();
-// ball2.move();
+  
+}
+ function move (my_ball)
+{
+  
+  const canvas1 = new canvas();
+  my_ball.direction();
+
+  setInterval(() => {
+
+
+    my_ball.ball_x +=  my_ball.x_velocity;
+    my_ball.ball_y += my_ball.y_velocity;
+    my_ball.checkWalls();
+   
+   
+    setInterval(() => {
+    
+    canvas1.context.drawImage(canvas1.ballImg, my_ball.ball_x - my_ball.ball_size / 2, my_ball.ball_y - my_ball.ball_size / 2, my_ball.ball_size, my_ball.ball_size);   
+
+  }, 1000/my_ball.Frame_per_second );
+
+   canvas1.context.clearRect(0,0,1450, 800);
+    
+  }, 1000/my_ball.Frame_per_second);
+
+}
+
+
+
+let numOfBalls = prompt ('enter the number of balls you want');
+let balls  = new Array();
+let balls2 = new Array();
+balls.length = numOfBalls;
+balls2.length = balls.length;
+for (let i = 0 ; i < balls.length ; i ++ )
+{
+  balls[i] = new ball();
+  move(balls[i]);
+}
+
+
+
+
+
+
+

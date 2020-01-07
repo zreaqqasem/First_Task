@@ -1,6 +1,4 @@
-
 export default class ball {
-  
   
   constructor ()
   {
@@ -10,33 +8,26 @@ export default class ball {
     this.y_velocity = this.y_velocity();
     this.Frame_per_second = 30;
     this.ball_size = 40;
-    
   }
 
      x_possition() {
 
      this.x_possition = Math.random() * 1450; 
      this.x_possition = Math.floor(this.x_possition);
-     return this.x_possition;   // generate a random number between 1 and 1450 which it the width of the canvas.
-
-
-    
+     return this.x_possition;   // generate a random number between 1 and 1450 which it the width of the canvas
   }
 
-   y_possition ()
-  {
+   y_possition (){
    
     this.y_possition = Math.random() * 800; //generate a random number between 1 and 800 which it the height of the canvas.
     this.y_possition = Math.floor(this.y_possition);
     return this.y_possition;
-
-
   }
   x_velocity() // get a random x axsis velocity for any ball object
-  {
+           {
 
     this.x_velocity = (Math.random() * 10 + 10 );
-    this.x_velocity = Math.floor(this.x_velocity);
+           this.x_velocity = Math.floor(this.x_velocity);
     return this.x_velocity;
   }
 
@@ -45,8 +36,6 @@ export default class ball {
     this.y_velocity = (Math.random() * 10 + 10 );
     this.y_velocity = Math.floor(this.y_velocity);
     return this.y_velocity;
-
-
   }
 
   direction () // generate a random ball_direction start.
@@ -60,7 +49,6 @@ export default class ball {
   }
 
   }
-
 
   checkWalls()
   {
@@ -78,8 +66,6 @@ export default class ball {
      }
 
   }
-
-  
 }
 
 

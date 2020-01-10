@@ -1,15 +1,15 @@
 import ball from "../src/ball.js";
-import move from "../src/methods.js";
+import moveBallsAndDrawHoles from "../src/methods.js";
 
-let numOfBalls = prompt ('enter the number of balls you want');
-let balls  = new Array();
-let balls2 = new Array();
-balls.length = numOfBalls;
-balls2.length = balls.length;
-for (let i = 0 ; i < balls.length ; i ++ )
-{
-  balls[i] = new ball();
-  move(balls[i]);
-}
+let ball1 = new ball();
+let ball2 = new ball();
+let ball3 = new ball();
+let ball4 = new ball();
+moveBallsAndDrawHoles(ball1);
+moveBallsAndDrawHoles(ball2);
+moveBallsAndDrawHoles(ball3);
+moveBallsAndDrawHoles(ball4);
+
+
 
  

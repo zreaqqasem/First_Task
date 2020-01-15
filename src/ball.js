@@ -50,23 +50,15 @@ export default class ball {
 
   }
 
-  checkWalls()
-  {
-    if (this.x_possition - this.ball_size / 2 < 0 && this.x_velocity < 0) {   // here is the colision of the 4 wall cases.
-      this.x_velocity = -this.x_velocity;
-     }
-     if (this.x_possition + this.ball_size / 2 > 1450 && this.x_velocity > 0) {
-      this.x_velocity = -this.x_velocity;
-     }
-     if (this.y_possition - this.ball_size / 2 < 0 && this.y_velocity < 0) {
-      this.y_velocity = -this.y_velocity;
-     }
-     if (this.y_possition + this.ball_size / 2 > 800 && this.y_velocity > 0) {
-      this.y_velocity = -this.y_velocity;
-     }
+  
+
+    //  if (this.x_possition - this.ball_size/2  == 450 - 80 / 2 || this.y_possition - this.ball_size / 2  == 400 - 80 / 2){
+     
+    //   alert ('bye');
+    //  }
 
   }
-}
+
 
 
 

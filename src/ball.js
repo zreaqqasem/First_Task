@@ -50,13 +50,6 @@ export default class ball {
 
   }
 
-  
-
-    //  if (this.x_possition - this.ball_size/2  == 450 - 80 / 2 || this.y_possition - this.ball_size / 2  == 400 - 80 / 2){
-     
-    //   alert ('bye');
-    //  }
-
   }
 
 
